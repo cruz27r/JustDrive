@@ -83,7 +83,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.dsiembab.JustDrive'
+    namespace "com.justdrive"
     defaultConfig {
         applicationId 'com.dsiembab.JustDrive'
         minSdkVersion rootProject.ext.minSdkVersion
