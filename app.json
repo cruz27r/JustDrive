@@ -37,7 +37,10 @@
       [
         "@rnmapbox/maps",
         {
-          "RNMapboxMapsVersion": "11.1.0",
+          "RNMapboxMapsVersion": "11.1.0"
+        },
+        "@rnmapbox/maps",
+        {
           "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiZHNpZW1iYWIiLCJhIjoiY2x1Yml3NXU5MHZvNDJxcHFqbzN2cGk1eiJ9.tJGpObDkD0dzAeFVq_km6g"
         },
         "expo-location",
