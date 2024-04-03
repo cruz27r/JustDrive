@@ -21,17 +21,13 @@
 
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Mapbox from '@rnmapbox/maps';
+import { LatLng, LeafletView } from 'react-native-leaflet-view';
 
-Mapbox.setAccessToken('pk.eyJ1IjoiZHNpZW1iYWIiLCJhIjoiY2x1MWlzcGRhMDlzcDJsdGczMHAwc3gxNSJ9.Wh9KNXL4bpcNTKVOH-GayA');
-
-const App = () => {
+const App = () => {r
   return (
-    <View style={styles.page}>
-      <View style={styles.container}>
-        <Mapbox.MapView style={styles.map} />
-      </View>
-    </View>
+    <LeafletView
+    // The rest of your props, see the list below
+    />
   );
 }
 
