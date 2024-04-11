@@ -28,12 +28,18 @@ const App = () => {
     <LeafletView
       mapMarkers = {[
         {
-          //position: DEFAULT_COORDINATE,
+          position: [42.3128542, -71.0383129],
           icon: 'a',  
           size: [32, 32],          
         },
       ]}
-      //mapCenterPosition={DEFAULT_COORDINATE}
+      // mapCenterPosition={[
+      //   {
+      //     lat: 42.3128542,
+      //     lng: -71.0383129,
+      //   },
+      // ]}
+      mapCenterPosition={[42.3128542, -71.0383129]}
     />
   );
 }
