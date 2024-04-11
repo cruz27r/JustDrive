@@ -23,10 +23,17 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { LatLng, LeafletView } from 'react-native-leaflet-view';
 
-const App = () => {r
+const App = () => {
   return (
     <LeafletView
-    // The rest of your props, see the list below
+      mapMarkers = {[
+        {
+          //position: DEFAULT_COORDINATE,
+          icon: 'a',  
+          size: [32, 32],          
+        },
+      ]}
+      //mapCenterPosition={DEFAULT_COORDINATE}
     />
   );
 }
