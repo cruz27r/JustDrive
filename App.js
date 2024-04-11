@@ -33,13 +33,10 @@ const App = () => {
           size: [32, 32],          
         },
       ]}
-      // mapCenterPosition={[
-      //   {
-      //     lat: 42.3128542,
-      //     lng: -71.0383129,
-      //   },
-      // ]}
-      mapCenterPosition={[42.3128542, -71.0383129]}
+      mapCenterPosition={{
+        lat: 42.3128542,
+        lng: -71.0383129,
+      }}
     />
   );
 }
