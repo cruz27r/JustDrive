@@ -30,7 +30,7 @@ const App = () => {
         mapCenterPosition={mapCenter}
         
       />
-      <View style = {styles.buttonContainer}>
+      <View style = {styles.lowButtonContainer}>
         <Button title="Move Map" onPress={moveToPosition} />
       </View>
     </View>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300,
   },
-  buttonContainer: {
+  lowButtonContainer: {
     position: 'absolute',
     bottom: 0,
     width: '100%',
