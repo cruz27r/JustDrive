@@ -42,6 +42,7 @@ const App = () => {
     });
   };
 
+  /* main app component */ 
   return (
     <View style={{ flex: 1}}>
       <LeafletView
