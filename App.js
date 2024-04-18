@@ -1,23 +1,3 @@
-// import { StatusBar } from 'expo-status-bar';
-// import { StyleSheet, Text, View } from 'react-native';
-
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text> text </Text>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
 
 import React, { useState } from 'react';
 import { StyleSheet, View, Button} from 'react-native';
@@ -30,12 +10,6 @@ const App = () => {
   });
 
   const moveToPosition = () => {
-    // mapRef.current.animateToRegion({
-    //   latitude: 42.3128542,
-    //   longitude: -71.0383129,
-    //   latitudeDelta: 0.0922,
-    //   longitudeDelta: 0.0421,
-    // }, 1000); // duration in milliseconds
     setMapCenter({
       lat: 42.3128542,
       lng: -72.0383129,
