@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    height: 300,
+    height: 300, 
     width: 300,
   },
   lowButtonContainer: {
