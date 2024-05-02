@@ -1,7 +1,15 @@
+import React, { useEffect, useRef } from 'react';
 import './css/App.css';
 import { initializeMap } from './js/map.js';
 
 function App() {
+  const mapRef = useRef();  // Add this line
+  useEffect(() => {
+    if (mapRef.current) {
+      initializeMap(mapRef.current);
+    }
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -15,6 +23,10 @@ function App() {
           Learn React
         </a>
       </header>
+      <div ref={mapRef} style={{ width: '100%', height: '500px' }}></div> {
+        /* Map container */
+        
+        }
     </div>
   );
 }
