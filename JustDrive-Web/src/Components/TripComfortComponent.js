@@ -17,20 +17,26 @@ const TripComfortComponent = ({ map, showTripComfortDetails}) => {
         showTripComfortDetails: PropTypes.bool.isRequired,
     };
 
-    useEffect(() => {
-        if (map) {
-            // Listen for clicks on map (waypoint generation by user)
-            const onClick = (e) => {
-                // Calculate comfort arbitrarily :)
-                const center = map.getCenter();
-                const distance = center.distanceTo([e.latlng.lat, e.latlng.lng], [center.lat, center.lng]);
-                setComfort(Math.round(distance / 1000));
-            };
-            map.on('click', onClick);
-            console.log("Comfort: ", comfort); 
-            return () => map.off('click', onClick);
-        }
-    }, [map]);
+    // useEffect(() => {
+    //     // Listen for clicks anywhere on the page
+    //     const onClick = (e) => {
+    //         setComfort(Math.floor(Math.random() * 5) + 1);
+    //     };
+    //     window.addEventListener('click', onClick);
+    
+    //     // Clean up function to remove the event listener when the component unmounts
+    //     return () => window.removeEventListener('click', onClick);
+    // }, []);
+//     useEffect(() => {
+//         if (map) {
+//             // Listen for clicks on the map to create new waypoints
+//             const onClick = (e) => {
+//             setComfort(Math.floor(Math.random() * 5) + 1);
+// };
+//             map.on('click', onClick);
+//             return () => map.off('click', onClick);
+//         }
+//     }, [map]); 
 
     return (
         <div className="trip-comfort-details" style={{display: showTripComfortDetails ? 'block' : 'none' }}> 
