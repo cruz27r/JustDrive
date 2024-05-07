@@ -30,23 +30,31 @@ const SearchComponent = ({ map }) => {
 
     // Initialize or update the route
     const setupRoute = (start, end) => {
-        if (routeControl) {
-            routeControl.setWaypoints([L.latLng(start), L.latLng(end)]);
-        } else {
-            const control = L.Routing.control({
-                waypoints: [L.latLng(start), L.latLng(end)],
-                routeWhileDragging: true,
-                showAlternatives: false,
-                geocoder: L.Control.Geocoder.nominatim()
-            }).addTo(map);
-            setRouteControl(control);
+        try {
+            if (routeControl) {
+                routeControl.setWaypoints([L.latLng(start), L.latLng(end)]);
+            } else {
+                const control = L.Routing.control({
+                    waypoints: [L.latLng(start), L.latLng(end)],
+                    routeWhileDragging: true,
+                    showAlternatives: false,
+                    geocoder: L.Control.Geocoder.nominatim()
+                }).addTo(map);
+                setRouteControl(control);
 
-            control.on('waypointschanged', (e) => {
-                setFrom(e.waypoints[0].latLng);
-                setTo(e.waypoints[1].latLng);
-            });
+                control.on('waypointschanged', (e) => {
+                    setFrom(e.waypoints[0].latLng);
+                    setTo(e.waypoints[1].latLng);
+                });
+            }
+        } catch (error) {
+            console.error('Error on setup route:', error)
         }
     };
+
+    const showEndOfTripStats = () => {
+        document.getElementById('trip-end-details').style.display = 'block';
+    }
 
     return (
         <div className="search-overlay">
@@ -65,7 +73,7 @@ const SearchComponent = ({ map }) => {
                     onChange={(e) => setTo(e.target.value)}
                     placeholder="To"
                 />
-                <button type="button" onClick={() => setupRoute(from, to)} className="search-button">Search Route</button>
+                <button type="button" onClick={() => { setupRoute(from, to); showEndOfTripStats(); }} className="search-button">Search Route</button>
             </form>
         </div>
     );
