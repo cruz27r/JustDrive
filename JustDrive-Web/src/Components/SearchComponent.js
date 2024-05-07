@@ -3,7 +3,7 @@ import L from 'leaflet';
 import 'leaflet-routing-machine';
 import './SearchComponent.css';
 
-const SearchComponent = ({ map }) => {
+const SearchComponent = ({ map, setShowTripComfortDetails }) => {
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
     const [routeControl, setRouteControl] = useState(null);
@@ -26,7 +26,7 @@ const SearchComponent = ({ map }) => {
             map.on('click', onClick);
             return () => map.off('click', onClick);
         }
-    }, [map, from, to]);
+    }, [map, from, to]); 
 
     // Initialize or update the route
     const setupRoute = (start, end) => {
@@ -52,10 +52,6 @@ const SearchComponent = ({ map }) => {
         }
     };
 
-    const showEndOfTripStats = () => {
-        document.getElementById('trip-end-details').style.display = 'block';
-    }
-
     return (
         <div className="search-overlay">
             <form onSubmit={(e) => e.preventDefault()}>
@@ -73,8 +69,7 @@ const SearchComponent = ({ map }) => {
                     onChange={(e) => setTo(e.target.value)}
                     placeholder="To"
                 />
-                <button type="button" onClick={() => { setupRoute(from, to); showEndOfTripStats(); }} className="search-button">Search Route</button>
-            </form>
+            <button type="button" onClick={() => {setupRoute(from, to); setShowTripComfortDetails(true); }} className="search-button">Search Route</button>            </form>
         </div>
     );
 };
