@@ -23,7 +23,7 @@ function App() {
         <div className="App" style={{ position: 'relative', width: '100%', height: '100vh' }}>
             <div style={{display: 'flex'}}>
                 <div ref={mapRef} className='map-container'></div>
-                <TripComfortComponent map={map} />  
+                <TripComfortComponent map={map} showTripComfortDetails={showTripComfortDetails}/>  
             </div>
             <div ref={directionsRef} id="directions-panel" >
                 {/* Directions will appear here */}
