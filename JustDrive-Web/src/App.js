@@ -1,34 +1,30 @@
-import React, { useEffect, useRef } from 'react';
-import './css/App.css';
-import { initializeMap } from './js/map.js';
+import React, { useEffect, useRef, useState } from 'react';
+import './App.css';
+import { initializeMap } from './Map/map.js';
+import SearchComponent from './Components/SearchComponent';
 
 function App() {
-  const mapRef = useRef();  // Add this line
-  useEffect(() => {
-    if (mapRef.current) {
-      initializeMap(mapRef.current);
-    }
-  }, []);
+    const mapRef = useRef(null);
+    const directionsRef = useRef(null); // Reference for the directions container
+    const [map, setMap] = useState(null);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <div ref={mapRef} style={{ width: '100%', height: '500px' }}></div> {
-        /* Map container */
-        
+    useEffect(() => {
+        if (mapRef.current && !map) {
+            // Pass the map container and the directions container ID
+            const newMap = initializeMap(mapRef.current, 'directions-panel');
+            setMap(newMap);
         }
-    </div>
-  );
+    }, [map]);
+
+    return (
+        <div className="App" style={{ position: 'relative', width: '100%', height: '100vh' }}>
+            <div ref={mapRef} className='map-container'></div>
+            <div ref={directionsRef} id="directions-panel" >
+                {/* Directions will appear here */}
+            </div>
+            <SearchComponent map={map} />
+        </div>
+    );
 }
 
 export default App;

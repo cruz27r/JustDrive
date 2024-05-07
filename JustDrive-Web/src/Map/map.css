@@ -1,0 +1,9 @@
+.map-container {
+    width: 90%;        /* 90% of the parent container */
+    height: 0;         /* Initially set to 0 */
+    padding-bottom: 60%; /* Aspect ratio: height is 60% of width */
+    position: relative; /* Needed for Leaflet's map positioning */
+    margin: 20px auto;  /* Vertically any space, horizontally centered */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /* Optional: adds shadow for depth */
+    z-index: -10000;
+}
