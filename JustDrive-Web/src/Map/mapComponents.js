@@ -1,20 +1,21 @@
-// MapComponent.js
 import React, { useState, useEffect, useRef } from 'react';
-import { initializeMap } from './Map/map'; // Import your map initialization function if separated
-import './MapComponent.css'; // Optional: if you have specific styles for this component
+import { initializeMap } from './Map/map'; // Import the map initialization function
+import './mapComponents.css';
 
 function MapComponent() {
-    const mapRef = useRef(null);
-    const [directions, setDirections] = useState([]);
+    const mapRef = useRef(null); // Reference to the map container element
+    const [directions, setDirections] = useState([]); // State to hold the directions instructions
 
     useEffect(() => {
         if (mapRef.current) {
+            // Initialize the map and set up an event listener for route found events
             const map = initializeMap(mapRef.current);
             map.on('routesfound', (event) => {
-                setDirections(event.routes[0].instructions); // Assuming first route is desired
+                // Update directions state with the route instructions when a route is found
+                setDirections(event.routes[0].instructions);
             });
         }
-    }, []);
+    }, []); // Empty dependency array ensures this effect runs only once when the component mounts
 
     return (
         <div>

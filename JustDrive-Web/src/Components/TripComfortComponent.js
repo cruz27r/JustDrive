@@ -1,54 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import L from 'leaflet';
+import React from 'react';
 import './TripComfortComponent.css';
 import PropTypes from 'prop-types';
 
-const TripComfortComponent = ({ map, showTripComfortDetails}) => {
-    const [comfort, setComfort] = useState(0);
-
-    // Checks if needed 'props' are passed
+const TripComfortComponent = ({ map, showTripComfortDetails, tripDetails }) => {
+    // Define the expected prop types for this component
     TripComfortComponent.propTypes = {
-        // map props!!
-        map: PropTypes.shape({
-            getCenter: PropTypes.func,
-            on: PropTypes.func,
-            off: PropTypes.func,
-        }).isRequired,
-        showTripComfortDetails: PropTypes.bool.isRequired,
+        map: PropTypes.object.isRequired, // The map object
+        showTripComfortDetails: PropTypes.bool.isRequired, // Boolean to show/hide the component
+        tripDetails: PropTypes.shape({
+            destination: PropTypes.string, // Destination name
+            distance: PropTypes.string, // Trip distance
+            duration: PropTypes.string // Trip duration
+        }).isRequired
     };
 
-    // useEffect(() => {
-    //     // Listen for clicks anywhere on the page
-    //     const onClick = (e) => {
-    //         setComfort(Math.floor(Math.random() * 5) + 1);
-    //     };
-    //     window.addEventListener('click', onClick);
-    
-    //     // Clean up function to remove the event listener when the component unmounts
-    //     return () => window.removeEventListener('click', onClick);
-    // }, []);
-//     useEffect(() => {
-//         if (map) {
-//             // Listen for clicks on the map to create new waypoints
-//             const onClick = (e) => {
-//             setComfort(Math.floor(Math.random() * 5) + 1);
-// };
-//             map.on('click', onClick);
-//             return () => map.off('click', onClick);
-//         }
-//     }, [map]); 
-
     return (
-        <div className="trip-comfort-details" style={{display: showTripComfortDetails ? 'block' : 'none' }}> 
+        <div className="trip-comfort-details" style={{ display: showTripComfortDetails ? 'block' : 'none' }}>
+            {/* Display the trip details */}
             <form id="trip-end-details-form">
-                <p>Destination</p>
-                <p>Duration</p>
+                <p>Destination: {tripDetails.destination}</p>
+                <p>Distance: {tripDetails.distance}</p>
+                <p>Duration: {tripDetails.duration}</p>
                 <h2>Comfort Level</h2>
-                <p>{comfort}</p>
+                <p>0</p>
                 <button type="submit" className="end-trip-button">End Trip</button>
             </form>
         </div>
     );
-} 
+}
 
-export default TripComfortComponent; 
+export default TripComfortComponent;

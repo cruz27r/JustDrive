@@ -34,7 +34,7 @@
   height: 80vh;           /* Height of the map */
   margin: 20px auto 0;    /* Top margin added, auto horizontal to center, no bottom margin */
   position: relative;     /* Position relative for absolute positioning inside */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);  /* Optional: Adds shadow for depth */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);  /* Adds shadow for depth */
 }
 
 @keyframes App-logo-spin {
