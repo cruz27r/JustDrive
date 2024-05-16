@@ -49,8 +49,26 @@ const initializeMap = (mapContainer, directionsContainerId) => {
             attribution: 'Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        var marker = L.marker([51.5, -0.09]).addTo(map);
+        // Added hardcoded favorite places of interest from professor
+        var dunkin = L.marker([42.335794505171414, -71.05603849540067]).addTo(map);
+        var beach = L.marker([42.32633311357259, -71.04751104856862]).addTo(map);
+        var beaconst = L.marker([42.35617141358264, -71.07250599673633]).addTo(map);
+        var jfklib = L.marker([42.31658384819062, -71.0342390256396]).addTo(map);
+        var fanpark = L.marker([42.354880844528964, -71.04635016334034]).addTo(map);
+        var drawbridge = L.marker([42.30401376889333, -71.04768745928939]).addTo(map);
+        var starway = L.marker([42.31881506644686, -71.0505238921386]).addTo(map);
+        var boathouse = L.marker([42.311701730075924, -71.03977490530909]).addTo(map);
 
+        // Add the popup descriptions
+        dunkin.bindPopup("<b>Favorited</b><b> Dunkin'Donuts by old colony.").openPopup();
+        beach.bindPopup("I am a popup.").openPopup();
+        beaconst.bindPopup("I am a popup.").openPopup();
+        jfklib.bindPopup("I am a popup.").openPopup();
+        fanpark.bindPopup("I am a popup.").openPopup();
+        drawbridge.bindPopup("I am a popup.").openPopup();
+        starway.bindPopup("I am a popup.").openPopup();
+        boathouse.bindPopup("I am a popup.").openPopup();
+        
         // Add click event handler to the map
         map.on('click', function (e) {
             // Add a marker at the clicked location
