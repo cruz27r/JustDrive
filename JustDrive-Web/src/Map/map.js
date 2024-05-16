@@ -4,6 +4,40 @@ import 'leaflet-control-geocoder';
 
 let map; // This variable will hold your map instance globally.
 
+// comfort modifier coordinates
+let comfortModifiers = [
+    {
+        coordinates: [42.329835,-71.0489529],
+        comfortValue: 7,
+        reason: 'ocean',
+        dist: 500
+    },
+    {
+        coordinates: [42.3494976,-71.0413898],
+        comfortValue: 7,
+        reason: 'ocean',
+        dist: 500
+    },
+    {
+        coordinates: [42.3731379,-71.0518143],
+        comfortValue: 7,
+        reason: 'ocean',
+        dist: 500
+    },
+    {
+        coordinates: [42.3135976,-71.0450596],
+        comfortValue: 10,
+        reason: 'ocean',
+        dist: 500
+    },
+    {
+        coordinates: [42.3464594,-71.0603566],
+        comfortValue: -50,
+        reason: 'highway',
+        dist: 300
+    }
+]
+
 const initializeMap = (mapContainer, directionsContainerId) => {
     if (!map && mapContainer) {
         // Initialize the map
@@ -34,6 +68,7 @@ const initializeMap = (mapContainer, directionsContainerId) => {
         drawbridge.bindPopup("I am a popup.").openPopup();
         starway.bindPopup("I am a popup.").openPopup();
         boathouse.bindPopup("I am a popup.").openPopup();
+        
         // Add click event handler to the map
         map.on('click', function (e) {
             // Add a marker at the clicked location
@@ -74,7 +109,24 @@ function displayDirections(route, directionsPanel) {
     if (directionsPanel) {
         let directionsHtml = '<h4>Directions</h4><ol>';
         route.instructions.forEach((instruction) => {
-            directionsHtml += `<li>${instruction.text} - ${instruction.distance} meters</li>`;
+            // calculate comfort
+            let comfort = 0;
+            // if (instruction.distance < 100) {
+            //     comfort = 100;
+            // } else {
+            //     comfort = 100 - (instruction.distance - 100) / 10;
+            // }
+            // modify comfort by applicable comfort modifiers
+            comfortModifiers.forEach((modifier) => {
+                let dist = L.latLng(modifier.coordinates).distanceTo(instruction.latLng);
+                if (dist < modifier.dist) {
+                    comfort += modifier.comfortValue;
+                }
+            });
+            
+            // fix comfort precision
+            comfort = Math.round(comfort * 100) / 100;    // this is dirty :( 
+            directionsHtml += `<li>${instruction.text} - ${instruction.distance} meters - ${comfort} comfort</li>`;
         });
         directionsHtml += '</ol>';
         directionsPanel.innerHTML = directionsHtml;
