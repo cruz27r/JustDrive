@@ -26,11 +26,14 @@ const initializeMap = (mapContainer, directionsContainerId) => {
         var boathouse = L.marker([42.311701730075924, -71.03977490530909]).addTo(map);
 
         // Add the popup descriptions
-        var popup = L.popup()
-            .setLatLng([42.335794505171414, -71.05603849540067])
-            .setContent("A place of interest Dunkin' Donuts by Old colony.")
-            .openOn(map);
-
+            marker.on('mouseover', function(e) {
+                //open popup;
+                var popup = L.popup()
+                 .setLatLng(42.335794505171414, -71.05603849540067) 
+                 .setContent("A place of interest Dunkin' Donuts by Old colony.")
+                 .openOn(map);
+              });
+              
 
         // Add click event handler to the map
         map.on('click', function (e) {
