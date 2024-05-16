@@ -8,6 +8,15 @@
   pointer-events: none;
 }
 
+.logo {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -30,11 +39,11 @@
 }
 
 .map-container {
-  width: 90%;             /* Map width relative to its container */
-  height: 80vh;           /* Height of the map */
-  margin: 20px auto 0;    /* Top margin added, auto horizontal to center, no bottom margin */
-  position: relative;     /* Position relative for absolute positioning inside */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);  /* Optional: Adds shadow for depth */
+    width: 50%;             /* Adjusted width */
+    height: 50vh;           /* Adjusted height */
+    margin: 20px auto 0;    /* Top margin added, auto horizontal to center, no bottom margin */
+    position: relative;     /* Needed for Leaflet's map positioning */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);  /* Optional: Adds shadow for depth */
 }
 
 @keyframes App-logo-spin {
