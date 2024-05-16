@@ -28,12 +28,11 @@ function App() {
                 
             <div style={{display: 'flex'}}>
                 <div ref={mapRef} className='map-container'></div>
-                {map && (
                     <TripComfortComponent 
                         map={map} 
-                        showTripComfortDetails={showTripComfortDetails} 
-                    />
-                )}            </div>
+                        setShowTripComfortDetails={setShowTripComfortDetails} 
+                    />           
+                </div>
             <div ref={directionsRef} id="directions-panel" >
                 {/* Directions will appear here */}
             </div>

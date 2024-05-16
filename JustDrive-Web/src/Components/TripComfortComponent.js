@@ -55,7 +55,7 @@ import L from 'leaflet';
 import 'leaflet-routing-machine';
 import './SearchComponent.css';
 
-const TripComfortComponent = ({ map, showTripComfortDetails }) => {
+const SearchComponent = ({ map, setShowTripComfortDetails }) => {
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
     const [routeControl, setRouteControl] = useState(null);
@@ -121,9 +121,10 @@ const TripComfortComponent = ({ map, showTripComfortDetails }) => {
                     onChange={(e) => setTo(e.target.value)}
                     placeholder="To"
                 />
-            </form>
+            <button type="button" onClick={() => {setupRoute(from, to); setShowTripComfortDetails(true); }} className="search-button">Search Route</button>            </form>
         </div>
     );
 };
 
-export default TripComfortComponent;
+export default SearchComponent;
+
