@@ -26,7 +26,8 @@ const initializeMap = (mapContainer, directionsContainerId) => {
                     e.latlng
                 ],
                 routeWhileDragging: true,
-                showAlternatives: true
+                showAlternatives: true,
+                show: false,
             }).addTo(map);
 
             // Event listener for when routes are found
