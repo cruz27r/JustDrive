@@ -26,7 +26,7 @@ const initializeMap = (mapContainer, directionsContainerId) => {
         var boathouse = L.marker([42.311701730075924, -71.03977490530909]).addTo(map);
 
         // Add the popup descriptions
-        dunkin.bindPopup("<b>Favorited<b><b>Dunkin' Donuts by old colony.").openPopup();
+        dunkin.bindPopup("<b>Favorited</b><b> Dunkin'Donuts by old colony.").openPopup();
         beach.bindPopup("I am a popup.").openPopup();
         beaconst.bindPopup("I am a popup.").openPopup();
         jfklib.bindPopup("I am a popup.").openPopup();
