@@ -39,8 +39,8 @@
 }
 
 .map-container {
-    width: 50%;             /* Adjusted width */
-    height: 50vh;           /* Adjusted height */
+    width: 90%;             /* Adjusted width */
+    height: 70vh;           /* Adjusted height */
     margin: 20px auto 0;    /* Top margin added, auto horizontal to center, no bottom margin */
     position: relative;     /* Needed for Leaflet's map positioning */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);  /* Optional: Adds shadow for depth */
