@@ -26,7 +26,6 @@ function MapComponent() {
         </div>
     );
 }
-s
 function DirectionsPanel({ directions }) {
     return (
         <div className="directions-panel">
