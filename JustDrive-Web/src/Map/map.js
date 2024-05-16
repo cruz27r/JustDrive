@@ -18,7 +18,7 @@ const initializeMap = (mapContainer, directionsContainerId) => {
         // Added hardcoded favorite places of interest from professor
         var dunkin = L.marker([42.335794505171414, -71.05603849540067]).addTo(map);
         var beach = L.marker([42.32633311357259, -71.04751104856862]).addTo(map);
-        var beaconst = L.marker([42.35594698318256, -71.07245600022617]).addTo(map);
+        var beaconst = L.marker([42.35617141358264, -71.07250599673633]).addTo(map);
         var jfklib = L.marker([42.31658384819062, -71.0342390256396]).addTo(map);
         var fanpark = L.marker([42.354880844528964, -71.04635016334034]).addTo(map);
         var drawbridge = L.marker([42.30401376889333, -71.04768745928939]).addTo(map);
@@ -26,7 +26,7 @@ const initializeMap = (mapContainer, directionsContainerId) => {
         var boathouse = L.marker([42.311701730075924, -71.03977490530909]).addTo(map);
 
         // Add the popup descriptions
-            
+        dunkin.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
         // Add click event handler to the map
         map.on('click', function (e) {
