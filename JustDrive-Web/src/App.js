@@ -21,6 +21,11 @@ function App() {
 
     return (
         <div className="App" style={{ position: 'relative', width: '100%', height: '100vh' }}>
+            {/* Add the logo at the top right */}
+            <div style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
+                <img src={`${process.env.PUBLIC_URL}/images/JustDrive.png`} alt="App Logo" style={{ width: '150px', height: 'auto' }} />
+            </div>
+                
             <div style={{display: 'flex'}}>
                 <div ref={mapRef} className='map-container'></div>
                 <TripComfortComponent map={map} showTripComfortDetails={showTripComfortDetails}/>  
