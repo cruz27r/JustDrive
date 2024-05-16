@@ -16,14 +16,14 @@ const initializeMap = (mapContainer, directionsContainerId) => {
         }).addTo(map);
 
         // Added hardcoded favorite places of interest from professor
-        var marker = L.marker([42.335794505171414, -71.05603849540067]).addTo(map);
-        var marker = L.marker([42.32633311357259, -71.04751104856862]).addTo(map);
-        var marker = L.marker([42.35617141358264, -71.07250599673633]).addTo(map);
-        var marker = L.marker([42.31658384819062, -71.0342390256396]).addTo(map);
-        var marker = L.marker([42.355617615156454, -71.04661125818586]).addTo(map);
-        var marker = L.marker([42.30401376889333, -71.04768745928939]).addTo(map);
-        var marker = L.marker([42.31881506644686, -71.0505238921386]).addTo(map);
-        var marker = L.marker([42.311701730075924, -71.03977490530909]).addTo(map);
+        var dunkin = L.marker([42.335794505171414, -71.05603849540067]).addTo(map);
+        var beach = L.marker([42.32633311357259, -71.04751104856862]).addTo(map);
+        var beaconst = L.marker([42.35617141358264, -71.07250599673633]).addTo(map);
+        var jfklib = L.marker([42.31658384819062, -71.0342390256396]).addTo(map);
+        var fanpark = L.marker([42.355617615156454, -71.04661125818586]).addTo(map);
+        var drawbridge = L.marker([42.30401376889333, -71.04768745928939]).addTo(map);
+        var starway = L.marker([42.31881506644686, -71.0505238921386]).addTo(map);
+        var boathouse = L.marker([42.311701730075924, -71.03977490530909]).addTo(map);
 
         // Add the popup descriptions
         var popup = L.popup()
