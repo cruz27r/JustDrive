@@ -15,6 +15,7 @@
     position: absolute;      /* Position the logo absolutely */
     bottom: 10px;            /* Align the logo to the bottom */
     right: 10px;             /* Align the logo to the right */
+    z-index: 0;              /* Ensure the logo stays beneath the map */
 }
 
 
@@ -40,12 +41,11 @@
 }
 
 .map-container {
-    width: 90%;             /* Adjusted width */
+    width: 100%;            /* Full width of the parent container */
     height: calc(100% - 60px); /* Subtracting the height of the logo */
-    /*height: 70vh;*/           /* Adjusted height */
-    margin: 20px auto 0;    /* Top margin added, auto horizontal to center, no bottom margin */
+    margin: 0 auto;         /* Centered horizontally */
     position: relative;     /* Needed for Leaflet's map positioning */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);  /* Optional: Adds shadow for depth */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Optional: Adds shadow for depth */
     z-index: 1;             /* Z-index to manage stacking order */
 }
 
