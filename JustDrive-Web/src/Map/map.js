@@ -111,18 +111,17 @@ function displayDirections(route, directionsPanel) {
         route.instructions.forEach((instruction) => {
             // calculate comfort
             let comfort = 0;
-            // if (instruction.distance < 100) {
-            //     comfort = 100;
-            // } else {
-            //     comfort = 100 - (instruction.distance - 100) / 10;
-            // }
             // modify comfort by applicable comfort modifiers
-            comfortModifiers.forEach((modifier) => {
-                let dist = L.latLng(modifier.coordinates).distanceTo(instruction.latLng);
-                if (dist < modifier.dist) {
-                    comfort += modifier.comfortValue;
-                }
-            });
+            // try {
+            //     comfortModifiers.forEach((modifier) => {
+            //         let dist = L.latLng(modifier.coordinates).distanceTo(instruction.latLng);
+            //         if (dist < modifier.dist) {
+            //             comfort += modifier.comfortValue;
+            //         }
+            //     });
+            // } catch (e) {
+            //     console.log(e);
+            // }
             
             // fix comfort precision
             comfort = Math.round(comfort * 100) / 100;    // this is dirty :( 
