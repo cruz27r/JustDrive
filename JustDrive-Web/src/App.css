@@ -43,7 +43,7 @@
     position: absolute;     /* Position the logo container absolutely */
     bottom: 10px;           /* Align the logo container to the bottom */
     right: 10px;            /* Align the logo container to the right */
-    z-index: 0;             /* Ensure the logo container stays above the map */
+    z-index: 2;             /* Ensure the logo container stays above the map */
 }
 
 .logo {
