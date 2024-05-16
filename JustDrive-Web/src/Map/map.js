@@ -4,6 +4,39 @@ import 'leaflet-control-geocoder';
 
 let map; // This variable will hold your map instance globally.
 
+// comfort modifier coordinates
+let comfortModifiers = [
+    {
+        coordinates: [42.329835,-71.0489529],
+        comfortValue: 7,
+        reason: 'ocean',
+        dist: 700
+    },
+    {
+        coordinates: [42.3494976,-71.0413898],
+        comfortValue: 7,
+        reason: 'ocean',
+        dist: 700
+    },
+    {
+        coordinates: [42.3731379,-71.0518143],
+        comfortValue: 7,
+        reason: 'ocean',
+        dist: 700
+    },
+    {
+        coordinates: [42.3135976,-71.0450596],
+        comfortValue: 10,
+        reason: 'ocean',
+        dist: 700
+    },
+    {
+        coordinates: [42.3464594,-71.0603566],
+        comfortValue: -50,
+        reason: 'highway',
+        dist: 500
+    }
+]
 // Hardcoded favorite places of interest from professor
 const favoritePlaces = [
     { name: 'Dunkin', coordinates: [42.335794505171414, -71.05603849540067] },
@@ -60,7 +93,7 @@ const initializeMap = (mapContainer, directionsContainerId) => {
                 var instructions = routes[0].instructions;
                 console.log(instructions);
                 console.log(routes);
-                instructions.forEach(function (instruction) {
+                instructions.forEach(function (instruction) {   
                     var index = instruction.index;
                     var text = instruction.text;
                     console.log("Index:", index, "Instruction:", text);
@@ -78,6 +111,33 @@ function displayDirections(route, directionsPanel, randomPlaces) {
     if (directionsPanel) {
         let directionsHtml = '<h4>Directions</h4><ol>';
         route.instructions.forEach((instruction) => {
+            // calculate comfort
+            let comfort = 0;
+            // modify comfort by applicable comfort modifiers
+            try {
+                comfortModifiers.forEach((modifier) => {
+                    //let dist = L.latLng(modifier.coordinates).distanceTo(instruction.latLng);
+                    let startCoordinates = route.coordinates[instruction.index];
+                    let endCoordinates = route.coordinates[instruction.index + 1];
+                    let middleCoordinates = [(startCoordinates.lat + endCoordinates.lat) / 2, (startCoordinates.lng + endCoordinates.lng) / 2];
+                    // use start and end coordinates
+                    let distStart = L.latLng(modifier.coordinates).distanceTo(startCoordinates);
+                    let distMiddle = L.latLng(modifier.coordinates).distanceTo(middleCoordinates);
+                    if (distStart < modifier.dist || distMiddle < modifier.dist) {
+                        comfort += modifier.comfortValue;
+                    }
+                });
+            } catch (e) {
+                console.log(e);
+            }
+
+            //randomize slighty :)
+            if (comfort < 1 && comfort > -1) {
+                comfort = (Math.random() * 8) - 4 + comfort;
+            } 
+            // fix comfort precision
+            comfort = Math.round(comfort * 10) / 10;    // this is dirty :( 
+            directionsHtml += `<li>${instruction.text} - ${instruction.distance} meters, ${comfort} comfort</li>`;
             directionsHtml += `<li>${instruction.text} - ${instruction.distance} meters</li>`;
         });
         directionsHtml += '</ol>';
