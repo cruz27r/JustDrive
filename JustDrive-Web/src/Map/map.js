@@ -15,6 +15,7 @@ const initializeMap = (mapContainer, directionsContainerId) => {
             attribution: 'Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+        // Added hardcoded favorite places of interest from professor
         var marker = L.marker([42.335794505171414, -71.05603849540067]).addTo(map);
         var marker = L.marker([42.32633311357259, -71.04751104856862]).addTo(map);
         var marker = L.marker([42.35617141358264, -71.07250599673633]).addTo(map);
@@ -23,6 +24,13 @@ const initializeMap = (mapContainer, directionsContainerId) => {
         var marker = L.marker([42.30401376889333, -71.04768745928939]).addTo(map);
         var marker = L.marker([42.31881506644686, -71.0505238921386]).addTo(map);
         var marker = L.marker([42.311701730075924, -71.03977490530909]).addTo(map);
+
+        // Add the popup descriptions
+        var popup = L.popup()
+            .setLatLng([42.335794505171414, -71.05603849540067])
+            .setContent("A place of interest Dunkin' Donuts by Old colony.")
+            .openOn(map);
+
 
         // Add click event handler to the map
         map.on('click', function (e) {
