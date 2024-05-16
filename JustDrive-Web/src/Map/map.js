@@ -1,5 +1,6 @@
 import L from 'leaflet';
 import 'leaflet-routing-machine';
+import 'leaflet-control-geocoder';
 
 let map; // This variable will hold your map instance globally.
 
@@ -27,11 +28,20 @@ const initializeMap = (mapContainer, directionsContainerId) => {
                 ],
                 routeWhileDragging: true,
                 showAlternatives: true,
-                show: false,
+                geocoder: L.Control.Geocoder.nominatim({})
             }).addTo(map);
 
             // Event listener for when routes are found
             routeControl.on('routesfound', function(event) {
+                var routes = event.routes;
+                var instructions = routes[0].instructions;
+                console.log(instructions);
+                console.log(routes);
+                instructions.forEach(function (instruction) {
+                    var index = instruction.index;
+                    var text = instruction.text;
+                    console.log("Index:", index, "Instruction:", text);
+                });
                 var directionsPanel = document.getElementById(directionsContainerId);
                 displayDirections(event.routes[0], directionsPanel);
             });
