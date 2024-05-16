@@ -67,7 +67,7 @@ const initializeMap = (mapContainer, directionsContainerId) => {
         drawbridge.bindPopup("<b>Favorited</b><br> Castle Island Drawbridge.").openPopup();
         starway.bindPopup("<b>Favorited</b><br> Starway Market.").openPopup();
         boathouse.bindPopup("<b>Favorited</b><br> UMB Boathouse Fox Point.").openPopup();
-        
+        dunkin.bindPopup("<b>Favorited</b><br> Dunkin' Donuts by Old Colony.").openPopup();
         // Add click event handler to the map
         map.on('click', function (e) {
             // Add a marker at the clicked location
