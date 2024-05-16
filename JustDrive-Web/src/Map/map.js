@@ -26,8 +26,14 @@ const initializeMap = (mapContainer, directionsContainerId) => {
         var boathouse = L.marker([42.311701730075924, -71.03977490530909]).addTo(map);
 
         // Add the popup descriptions
-        dunkin.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-
+        dunkin.bindPopup("<b>Favorited<b><b>Dunkin' Donuts by old colony.").openPopup();
+        beach.bindPopup("I am a popup.").openPopup();
+        beaconst.bindPopup("I am a popup.").openPopup();
+        jfklib.bindPopup("I am a popup.").openPopup();
+        fanpark.bindPopup("I am a popup.").openPopup();
+        drawbridge.bindPopup("I am a popup.").openPopup();
+        starway.bindPopup("I am a popup.").openPopup();
+        boathouse.bindPopup("I am a popup.").openPopup();
         // Add click event handler to the map
         map.on('click', function (e) {
             // Add a marker at the clicked location
