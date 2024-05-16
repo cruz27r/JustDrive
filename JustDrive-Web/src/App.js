@@ -28,15 +28,16 @@ function App() {
                 
             <div style={{display: 'flex'}}>
                 <div ref={mapRef} className='map-container'></div>
+                {map && (
                     <TripComfortComponent 
                         map={map} 
-                        setShowTripComfortDetails={setShowTripComfortDetails} 
-                    />           
-                </div>
+                        showTripComfortDetails={showTripComfortDetails} 
+                    />
+                )}            </div>
             <div ref={directionsRef} id="directions-panel" >
                 {/* Directions will appear here */}
             </div>
-            <SearchComponent map={map} setShowTripComfortDetails={setShowTripComfortDetails}/>
+                <SearchComponent map={map} setShowTripComfortDetails={setShowTripComfortDetails} />
         </div>
     );
 }
