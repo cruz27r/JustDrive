@@ -35,7 +35,13 @@ let comfortModifiers = [
         comfortValue: -50,
         reason: 'highway',
         dist: 500
-    }
+    },
+    {
+        coordinates: [42.3217309,-71.0513558],
+        comfortValue: -500,
+        reason: 'rotary',
+        dist: 100
+    },
 ]
 
 const initializeMap = (mapContainer, directionsContainerId) => {
