@@ -39,21 +39,11 @@
     z-index: 1;             /* Z-index to manage stacking order */
 }
 
-
-.map-container {
-    width: 100%;            /* Full width of the parent container */
-    height: calc(100% - 60px); /* Subtracting the height of the logo */
-    margin: 0 auto;         /* Centered horizontally */
-    position: relative;     /* Needed for Leaflet's map positioning */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Optional: Adds shadow for depth */
-    z-index: 1;             /* Z-index to manage stacking order */
-}
-
 .logo-container {
     position: absolute;     /* Position the logo container absolutely */
     bottom: 10px;           /* Align the logo container to the bottom */
     right: 10px;            /* Align the logo container to the right */
-    z-index: 2;             /* Ensure the logo container stays above the map */
+    z-index: 0;             /* Ensure the logo container stays above the map */
 }
 
 .logo {
