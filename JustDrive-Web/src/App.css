@@ -9,11 +9,10 @@
 }
 
 .logo {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 150px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 150px;           /* Adjust the width as needed */
+    height: auto;           /* Maintain aspect ratio */
+    margin: 10px auto;      /* Center horizontally and add vertical space */
+    display: block;         /* Ensures it's treated as a block element */
 }
 
 
@@ -39,11 +38,13 @@
 }
 
 .map-container {
-    width: 50%;             /* Adjusted width */
-    height: 50vh;           /* Adjusted height */
+    width: 90%;             /* Adjusted width */
+    height: calc(100% - 60px); /* Subtracting the height of the logo */
+    /*height: 70vh;*/           /* Adjusted height */
     margin: 20px auto 0;    /* Top margin added, auto horizontal to center, no bottom margin */
     position: relative;     /* Needed for Leaflet's map positioning */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);  /* Optional: Adds shadow for depth */
+    z-index: 1;             /* Z-index to manage stacking order */
 }
 
 @keyframes App-logo-spin {

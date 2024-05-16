@@ -15,6 +15,12 @@ const initializeMap = (mapContainer, directionsContainerId) => {
             attribution: 'Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+        var marker = L.marker([51.5, -0.09]).addTo(map);
+
+
+
+
+
         // Add click event handler to the map
         map.on('click', function (e) {
             // Add a marker at the clicked location

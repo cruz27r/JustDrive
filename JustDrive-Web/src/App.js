@@ -20,12 +20,9 @@ function App() {
 
     return (
         <div className="App" style={{ position: 'relative', width: '100%', height: '100vh' }}>
-            {/* Add the logo with the CSS class */}
-            <img src={`${process.env.PUBLIC_URL}/images/JustDrive.png`} alt="App Logo" className="logo" />
-
-            <div style={{ display: 'flex', height: '100%' }}>
+            <div style={{ display: 'flex', height: '100%', flexDirection: 'column' }}>
                 <div ref={mapRef} className='map-container' style={{ flex: 1 }}></div>
-                <TripComfortComponent map={map} showTripComfortDetails={showTripComfortDetails}/>  
+                <img src={`${process.env.PUBLIC_URL}/images/JustDrive.png`} alt="App Logo" className="logo" />
             </div>
             <div ref={directionsRef} id="directions-panel">
                 {/* Directions will appear here */}
