@@ -20,17 +20,18 @@ function App() {
 
     return (
         <div className="App" style={{ position: 'relative', width: '100%', height: '100vh' }}>
-            <div className="map-container">
-                <div ref={mapRef} style={{ width: '100%', height: '100%' }}></div>
-            </div>
-            <div className="logo-container">
-                <img src={`${process.env.PUBLIC_URL}/images/JustDrive.png`} alt="App Logo" className="logo" />
-            </div>
-            <div ref={directionsRef} id="directions-panel">
-                {/* Directions will appear here */}
-            </div>
-            <SearchComponent map={map} setShowTripComfortDetails={setShowTripComfortDetails} />
-        </div>
+    <div className="map-container">
+        <div ref={mapRef} style={{ width: '100%', height: '100%' }}></div>
+    </div>
+    <div ref={directionsRef} id="directions-panel">
+        {/* Directions will appear here */}
+    </div>
+    <SearchComponent map={map} setShowTripComfortDetails={setShowTripComfortDetails} />
+    <div className="logo-container">
+        <img src={`${process.env.PUBLIC_URL}/images/JustDrive.png`} alt="App Logo" className="logo" />
+    </div>
+</div>
+
     );
 }
 
