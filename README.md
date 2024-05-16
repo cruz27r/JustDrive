@@ -12,8 +12,6 @@ Guideline for how to branch and develop our parts
   3) Once fully complete commit to the developer
   4) Once we all commit our changes and are working in developer we push the developer branch to the main to save our new working version
 
-JustDrive's map uses a Leaflet WebView through react-native-leaflet-view [https://github.com/pavel-corsaghin/react-native-leaflet]. However, as of writing the react-native-leaflet API seems to be no longer maintained and has limited documented functionality. 
-
-
+JustDrive's map uses a Leaflet WebView through react-native-leaflet-view [https://github.com/pavel-corsaghin/react-native-leaflet]. However, as of writing the react-native-leaflet API seems to be no longer maintained and has limited documented functionality. NOTE: JustDrive previously used Leaflet but has now moved on to Google Maps API.
 
 We have now pivoted from using a Maps API to using a predefined area with simplified routing through a look-up table.
