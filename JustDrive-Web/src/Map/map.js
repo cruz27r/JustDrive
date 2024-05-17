@@ -55,6 +55,16 @@ const favoritePlaces = [
     { name: 'Boathouse', coordinates: [42.311701730075924, -71.03977490530909] }
 ];
 
+// Add the popup descriptions
+beach.bindPopup("<b>Favorited</b><br> Carson Beach.").openPopup();
+beaconst.bindPopup("<b>Favorited</b><br> Home.").openPopup();
+jfklib.bindPopup("<b>Favorited</b><br> JFK Library.").openPopup();
+fanpark.bindPopup("<b>Favorited</b><br> Fan Pier Park.").openPopup();
+drawbridge.bindPopup("<b>Favorited</b><br> Castle Island Drawbridge.").openPopup();
+starway.bindPopup("<b>Favorited</b><br> Starway Market.").openPopup();
+boathouse.bindPopup("<b>Favorited</b><br> UMB Boathouse Fox Point.").openPopup();
+dunkin.bindPopup("<b>Favorited</b><br> Dunkin' Donuts by Old.").openPopup();
+
 const initializeMap = (mapContainer, directionsContainerId) => {
     if (!map && mapContainer) {
         // Initialize the map
