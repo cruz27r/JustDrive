@@ -1,8 +1,8 @@
 
 .menu-container {
   position: absolute;
-  top: 10px; 
-  left: 30px; 
+  top: 30px; 
+  left: 200px; 
   
 }
 
@@ -12,8 +12,6 @@
   display: flex;
   flex-direction: column;
   background-color: transparent;
-  border: 1px solid #ccc;
-  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
   z-index: 10;
   margin-top: 25px;
 }
@@ -46,29 +44,36 @@
 .button-6 {
   align-items: center;
   background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%; /* Makes the button circular */
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+
+  background: #28852a;
+  border-radius: 999px;
+  box-shadow: #104a1f 0 10px 20px -10px;
   box-sizing: border-box;
-  
-  color: rgba(0, 0, 0, 0.85);
+  color: #FFFFFF;
   cursor: pointer;
-  display: inline-flex;
-  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 1.25;
-  margin: 0;
-  padding: 1rem; /* Adjust padding to make the button round */
-  position: relative;
-  text-decoration: none;
-  transition: all 250ms;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  width: 100px;
+  word-break: break-word;
+  border: 0;
+  
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  -webkit-user-select: none;
   vertical-align: baseline;
-  width: 3rem; /* Set equal width and height for circular shape */
   height: 3rem; /* Set equal width and height for circular shape */
   margin-top: 25px;
 }
