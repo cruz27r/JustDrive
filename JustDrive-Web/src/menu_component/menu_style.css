@@ -2,7 +2,7 @@
 .menu-container {
   position: absolute;
   top: 30px; 
-  left: 200px; 
+  left: 220px; 
   
 }
 
@@ -82,7 +82,7 @@
 .button-6:focus {
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-  color: rgba(0, 0, 0, 0.65);
+  color: rgba(31, 41, 28, 0.65);
 }
 
 .button-6:hover {
