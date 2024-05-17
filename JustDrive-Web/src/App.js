@@ -3,6 +3,7 @@ import './App.css'; // Ensure you are importing the CSS file with the .logo clas
 import { initializeMap } from './Map/map.js';
 import SearchComponent from './Components/SearchComponent';
 import TripComfortComponent from './Components/TripComfortComponent';
+import MenuComponent from './menu_component/menu_ex.js';
 
 function App() {
     const mapRef = useRef(null);
@@ -19,15 +20,31 @@ function App() {
     }, [map]);
 
     return (
+
         <div className="App" style={{ position: 'relative', width: '100%', height: '100vh' }}>
-            <div style={{ display: 'flex', height: '100%', flexDirection: 'column' }}>
-                <div ref={mapRef} className='map-container' style={{ flex: 1 }}></div>
-                <img src={`${process.env.PUBLIC_URL}/images/JustDrive.png`} alt="App Logo" className="logo" />
+
+            <div className='Menu-Logo'>
+                {/* Add the logo at the top right */}
+                <MenuComponent />
+                <div style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
+                    <img src={`${process.env.PUBLIC_URL}/images/JustDrive.png`} alt="App Logo" style={{ width: '150px', height: 'auto' }} />
+                </div>
             </div>
-            <div ref={directionsRef} id="directions-panel">
-                {/* Directions will appear here */}
+
+            <div className='Map-section'>
+                <div style={{ display: 'flex' }}>
+                    <div ref={mapRef} className='map-container'></div>
+                    {map && (
+                        <TripComfortComponent
+                            map={map}
+                            showTripComfortDetails={showTripComfortDetails}
+                        />
+                    )}            </div>
+                <div ref={directionsRef} id="directions-panel" >
+                    {/* Directions will appear here */}
+                </div>
+                <SearchComponent map={map} setShowTripComfortDetails={setShowTripComfortDetails} />
             </div>
-            <SearchComponent map={map} setShowTripComfortDetails={setShowTripComfortDetails} />
         </div>
     );
 }
