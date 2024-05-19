@@ -81,10 +81,10 @@ const initializeMap = (mapContainer, directionsContainerId) => {
     }
 };
 
-function displayDirections(route, directionsPanel, randomPlaces) {
+function displayDirections(route, directionsPanel) {
     if (directionsPanel) {
         let directionsHtml = '<h4>Directions</h4><ol>';
-        route.instructions.forEach((instruction) => {
+        route.instructions.forEach((instruction, index) => {
             
             // Calculate comfort.
             let comfort = 0;
@@ -94,11 +94,13 @@ function displayDirections(route, directionsPanel, randomPlaces) {
                 comfortModifiers.forEach((modifier) => {
                     let startCoordinates = route.coordinates[instruction.index];
                     let endCoordinates = route.coordinates[instruction.index + 1];
-                    let middleCoordinates = [(startCoordinates.lat + endCoordinates.lat) / 2, (startCoordinates.lng + endCoordinates.lng) / 2];
-                    let distStart = L.latLng(modifier.coordinates).distanceTo(startCoordinates);
-                    let distMiddle = L.latLng(modifier.coordinates).distanceTo(middleCoordinates);
-                    if (distStart < modifier.dist || distMiddle < modifier.dist) {
-                        comfort += modifier.comfortValue;
+                    if (endCoordinates) {
+                        let middleCoordinates = [(startCoordinates.lat + endCoordinates.lat) / 2, (startCoordinates.lng + endCoordinates.lng) / 2];
+                        let distStart = L.latLng(modifier.coordinates).distanceTo(startCoordinates);
+                        let distMiddle = L.latLng(modifier.coordinates).distanceTo(middleCoordinates);
+                        if (distStart < modifier.dist || distMiddle < modifier.dist) {
+                            comfort += modifier.comfortValue;
+                        }
                     }
                 });
             } catch (e) {
@@ -115,14 +117,6 @@ function displayDirections(route, directionsPanel, randomPlaces) {
         });
         directionsHtml += '</ol>';
         directionsPanel.innerHTML = directionsHtml;
-
-        // Display suggested points to visit.
-        let pointsHtml = '<h4>Suggested Points to Visit</h4><div>';
-        randomPlaces.forEach(place => {
-            pointsHtml += `<div class="suggested-point">${place.name} (${place.coordinates[0].toFixed(5)}, ${place.coordinates[1].toFixed(5)})</div>`;
-        });
-        pointsHtml += '</div>';
-        directionsPanel.innerHTML += pointsHtml;
     }
 }
 

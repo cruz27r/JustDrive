@@ -11,8 +11,10 @@ function App() {
     const [routeControl, setRouteControl] = useState(null);
     const [locationNames, setLocationNames] = useState({ fromName: '', toName: '' });
     const [clickToggle, setClickToggle] = useState(true);
+    const [suggestedPoints, setSuggestedPoints] = useState([]);
     const markerRef = useRef({ from: null, to: null });
 
+    // Set up route with random places to visit.
     const setupRoute = useCallback((from, to, fromName = '', toName = '') => {
         if (map) {
             const randomPlaces = getRandomPlaces([
@@ -26,64 +28,73 @@ function App() {
                 { name: 'Boathouse', coordinates: [42.311701730075924, -71.03977490530909] }
             ], 2, 3);
 
+            setSuggestedPoints(randomPlaces); // update suggested points
+
+            // Create waypoints array with 'from' location, random places, and 'to' location.
             const waypoints = [
                 L.latLng(from.lat, from.lng),
                 ...randomPlaces.map(place => L.latLng(place.coordinates)),
                 L.latLng(to.lat, to.lng)
             ];
 
-            if (routeControl) { // update route control with new waypoints
+            // Set up route control with waypoints.
+            if (routeControl) {
                 routeControl.setWaypoints(waypoints);
-            } else { // create new route control
+            } else {
                 const control = L.Routing.control({
                     waypoints: waypoints,
                     routeWhileDragging: true,
                     showAlternatives: true,
                     geocoder: L.Control.Geocoder.nominatim({}),
-                    createMarker: function () { return null; },
+                    createMarker: function () { return null; }, // disable default markers
                     show: false
                 }).addTo(map);
-                setRouteControl(control); // update state with new route control
+                setRouteControl(control); // save route control for future updates
 
                 control.on('routesfound', function (event) {
                     const route = event.routes[0];
                     const directionsPanel = document.getElementById('directions-panel');
-                    displayDirections(route, directionsPanel, randomPlaces);
+                    displayDirections(route, directionsPanel); // display route directions in panel
                 });
             }
         }
     }, [map, routeControl]);
 
-    // Initialize map.
+    // Initialize map when the component mounts.
     useEffect(() => {
-        if (mapRef.current && !map) { // wait for map container to be available
+        if (mapRef.current && !map) {
             const newMap = initializeMap(mapRef.current, 'directions-panel');
             setMap(newMap);
         }
     }, [map]);
 
-    // Add click event listener to map to set locations.
+    // Add click event listener to map to set 'from' and 'to' locations.
     useEffect(() => {
-        if (map) { // wait for map to be initialized
+        if (map) {
             const onClick = (e) => {
                 if (clickToggle) {
-                    setLocations(prev => ({ ...prev, from: e.latlng })); // update state with the new location
-                    setLocationNames(prev => ({ ...prev, fromName: `(${e.latlng.lat.toFixed(3)}, ${e.latlng.lng.toFixed(3)})` })); // update location name
-                    if (markerRef.current.from) { // remove old marker
+                    setLocations(prev => ({ ...prev, from: e.latlng }));
+                    setLocationNames(prev => ({ ...prev, fromName: `(${e.latlng.lat.toFixed(3)}, ${e.latlng.lng.toFixed(3)})` }));
+                    
+                    // Replace old 'from' marker with new marker.
+                    if (markerRef.current.from) {
                         map.removeLayer(markerRef.current.from);
                     }
-                    markerRef.current.from = L.marker(e.latlng).addTo(map); // add new marker
+                    markerRef.current.from = L.marker(e.latlng).addTo(map);
                 } else {
-                    setLocations(prev => ({ ...prev, to: e.latlng })); // update state with the new location
-                    setLocationNames(prev => ({ ...prev, toName: `(${e.latlng.lat.toFixed(3)}, ${e.latlng.lng.toFixed(3)})` })); // update location name
-                    if (markerRef.current.to) { // remove old marker
+                    setLocations(prev => ({ ...prev, to: e.latlng }));
+                    setLocationNames(prev => ({ ...prev, toName: `(${e.latlng.lat.toFixed(3)}, ${e.latlng.lng.toFixed(3)})` }));
+
+                    // Replace old 'to' marker with new marker.
+                    if (markerRef.current.to) {
                         map.removeLayer(markerRef.current.to);
                     }
-                    markerRef.current.to = L.marker(e.latlng).addTo(map); // add new marker
+                    markerRef.current.to = L.marker(e.latlng).addTo(map);
                 }
-                setClickToggle(!clickToggle); // toggle click
+                setClickToggle(!clickToggle); // toggle click event target between 'from' and 'to'
             };
 
+            // Add click event listener to map for setting 'from' and 'to' locations.
             map.on('click', onClick);
             return () => {
                 map.off('click', onClick);
@@ -91,14 +102,14 @@ function App() {
         }
     }, [map, clickToggle]);
 
-    // Setup route when both locations are set.
+    // Set up route when 'from' and 'to' locations are set.
     useEffect(() => {
         if (locations.from && locations.to) {
             setupRoute(locations.from, locations.to, locationNames.fromName, locationNames.toName);
         }
     }, [locations, locationNames, setupRoute]);
 
-    return ( // JSX code consisting of a map container, logo container, directions panel, and search component.
+    return ( // JSX code consisting of a map container, logo container, directions panel, suggested points panel, and search component.
         <div className="App" style={{ position: 'relative', width: '100%', height: '100vh' }}>
             <div className="map-container">
                 <div ref={mapRef} style={{ width: '100%', height: '100%' }}></div>
@@ -107,6 +118,18 @@ function App() {
                 <img src={`${process.env.PUBLIC_URL}/images/JustDrive.png`} alt="App Logo" className="logo" />
             </div>
             <div id="directions-panel"></div>
+            {suggestedPoints.length > 0 && (
+                <div id="suggested-points-panel">
+                    <h4>Suggested Points to Visit</h4>
+                    <div>
+                        {suggestedPoints.map((place, index) => (
+                            <div key={index} className="suggested-point">
+                                {place.name} ({place.coordinates[0].toFixed(5)}, {place.coordinates[1].toFixed(5)})
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
             <SearchComponent
                 map={map}
                 setLocations={setLocations}
