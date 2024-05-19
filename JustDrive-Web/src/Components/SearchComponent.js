@@ -3,73 +3,77 @@ import L from 'leaflet';
 import 'leaflet-routing-machine';
 import './SearchComponent.css';
 
-const SearchComponent = ({ map, setShowTripComfortDetails }) => {
+const SearchComponent = ({ map, setLocations, setupRoute, setLocationNames, locations, markerRef }) => {
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
-    const [routeControl, setRouteControl] = useState(null);
+    const geocoder = L.Control.Geocoder.nominatim();
 
-    useEffect(() => {
-        if (map) {
-            // Listen for clicks on the map to create new waypoints
-            const onClick = (e) => {
-                if (!from) {
-                    setFrom(e.latlng);
-                } else if (!to) {
-                    setTo(e.latlng);
-                    setupRoute(from, e.latlng);
-                } else {
-                    // Reset if both are set
-                    setFrom(e.latlng);
-                    setTo('');
-                }
-            };
-            map.on('click', onClick);
-            return () => map.off('click', onClick);
-        }
-    }, [map, from, to]); 
-
-    // Initialize or update the route
-    const setupRoute = (start, end) => {
-        try {
-            if (routeControl) {
-                routeControl.setWaypoints([L.latLng(start), L.latLng(end)]);
+    const handleSearch = async () => { // geocode search input and set locations
+        const resolveCoordinates = async (input) => {
+            if (input.match(/^[\d-.]+,\s*[\d-.]+$/)) {
+                const [lat, lng] = input.split(',').map(Number);
+                return { latLng: L.latLng(lat, lng), name: input };
             } else {
-                const control = L.Routing.control({
-                    waypoints: [L.latLng(start), L.latLng(end)],
-                    routeWhileDragging: true,
-                    showAlternatives: false,
-                    geocoder: L.Control.Geocoder.nominatim()
-                }).addTo(map);
-                setRouteControl(control);
-
-                control.on('waypointschanged', (e) => {
-                    setFrom(e.waypoints[0].latLng);
-                    setTo(e.waypoints[1].latLng);
+                return new Promise((resolve, reject) => {
+                    geocoder.geocode(input, (results) => {
+                        if (results.length > 0) {
+                            resolve({ latLng: L.latLng(results[0].center.lat, results[0].center.lng), name: results[0].name });
+                        } else {
+                            reject("Geocoding failed");
+                        }
+                    });
                 });
             }
+        };
+
+        try {
+            const fromCoords = await resolveCoordinates(from);
+            const toCoords = await resolveCoordinates(to);
+            if (fromCoords && toCoords) {
+                setLocations({ from: fromCoords.latLng, to: toCoords.latLng });
+                setLocationNames({ fromName: fromCoords.name, toName: toCoords.name });
+
+                // Add markers for search results.
+                if (markerRef.current.from) {
+                    map.removeLayer(markerRef.current.from); // remove old marker
+                }
+                markerRef.current.from = L.marker(fromCoords.latLng).addTo(map); // add new marker
+
+                if (markerRef.current.to) {
+                    map.removeLayer(markerRef.current.to); // remove old marker
+                }
+                markerRef.current.to = L.marker(toCoords.latLng).addTo(map); // add new marker
+            }
         } catch (error) {
-            console.error('Error on setup route:', error)
+            console.error('Geocode failure:', error);
         }
     };
 
-    return (
+    // Update search input fields when locations are set.
+    useEffect(() => {
+        if (locations.from) setFrom(`${locations.from.lat.toFixed(3)}, ${locations.from.lng.toFixed(3)}`);
+        if (locations.to) setTo(`${locations.to.lat.toFixed(3)}, ${locations.to.lng.toFixed(3)}`);
+    }, [locations]);
+
+    return ( // JSX code consisting of a search overlay with input fields for from and to locations.
         <div className="search-overlay">
             <form onSubmit={(e) => e.preventDefault()}>
                 <input
                     type="text"
                     className="search-input"
-                    value={typeof from === 'object' ? `${from.lat.toFixed(3)}, ${from.lng.toFixed(3)}` : from}
+                    value={from}
                     onChange={(e) => setFrom(e.target.value)}
                     placeholder="From"
                 />
                 <input
                     type="text"
                     className="search-input"
-                    value={typeof to === 'object' ? `${to.lat.toFixed(3)}, ${to.lng.toFixed(3)}` : to}
+                    value={to}
                     onChange={(e) => setTo(e.target.value)}
                     placeholder="To"
                 />
-            <button type="button" onClick={() => {setupRoute(from, to); setShowTripComfortDetails(true); }} className="search-button">Search Route</button>            </form>
+                <button type="button" onClick={handleSearch} className="search-button">Search Route</button>
+            </form>
         </div>
     );
 };

@@ -1,7 +1,6 @@
-// MapComponent.js
 import React, { useState, useEffect, useRef } from 'react';
-import { initializeMap } from './Map/map'; // Import your map initialization function if separated
-import './MapComponent.css'; // Optional: if you have specific styles for this component
+import { initializeMap } from './Map/map';
+import './MapComponent.css';
 
 function MapComponent() {
     const mapRef = useRef(null);
@@ -12,9 +11,8 @@ function MapComponent() {
             const map = initializeMap(mapRef.current);
 
             map.on('routesfound', (event) => {
-                const route = event.routes[0]; // Assuming first route is desired
-                //const instructions = route.instructions.map(instr => instr.text);
-                setDirections(route.instructions); // Assuming first route is desired
+                const route = event.routes[0];
+                setDirections(route.instructions);
             });
         }
     }, []);

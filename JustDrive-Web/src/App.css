@@ -45,7 +45,7 @@
     height: calc(100% - 60px); /* Subtracting the height of the logo */
     margin: 0 auto;         /* Centered horizontally */
     position: relative;     /* Needed for Leaflet's map positioning */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Optional: Adds shadow for depth */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add shadow for depth */
     z-index: 1;             /* Z-index to manage stacking order */
 }
 
@@ -57,9 +57,9 @@
 }
 
 .logo {
-    width: 100px;            /* Adjust the width as needed */
-    height: auto;            /* Maintain aspect ratio */
-    margin: 10px;            /* Adjust margin for positioning */
+    width: 100px;           /* Fixed width */
+    height: auto;           /* Maintain aspect ratio */
+    margin: 10px;           /* Add space around the logo */
 }
 
 
@@ -70,4 +70,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Hide the Leaflet Routing Machine UI */
+.leaflet-routing-container {
+  display: none !important;
 }
