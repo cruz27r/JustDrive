@@ -9,6 +9,31 @@ Chanin Sungla
 Nathan Ros
 Peng-Lin Chen
 
+
+### Test 1: Verification of Initial Project Setup and Landing Page Display
+ 
+#### Clone the Repository
+1. Open a terminal and run the following commands:
+  a. `git clone https://github.com/cruz27r/JustDrive.git`
+  b. `cd JustDrive/JustDrive-Web`
+2. Verify the repository is cloned into a directory named `JustDrive`.
+3. Run `pwd` and confirm the output shows you are in the `JustDrive/JustDrive-Web` directory.
+4. Inside the `JustDrive/JustDrive-Web` directory, run:
+  a. `npm run build`
+5. Confirm the terminal displays “Compiled successfully.”
+ 
+#### Serve the Project
+6. In the same directory, run:
+  a. `serve -s build`
+ 
+#### Verify the Landing Page
+7. If the browser does not open automatically, open a web browser manually and navigate to `http://localhost:3000`.
+8. On the landing page, verify you see:
+  a. A map centered around the UMass Boston area.
+  b. A search bar with fields for "From" and "To".
+  c. A blue "Search Route" button.
+  d. The JustDrive logo displayed at the bottom-right corner.
+
 Guideline for how to branch and develop our parts
 
   1) Developer will be the Main branch we use as our editing branch
