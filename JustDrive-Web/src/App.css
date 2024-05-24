@@ -61,11 +61,3 @@
     transform: rotate(360deg);
   }
 }
-
-.Map-section {
-  z-index: 1;
-}
-
-.Menu-Logo {
-  z-index: 9999;
-}
