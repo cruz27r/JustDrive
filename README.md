@@ -4,6 +4,10 @@ members:
 Sergio Barro-Ojeda
 Rafael Cruz
 Adi Edelhaus
+Darian
+Chanin Sungla
+Nathan Ros
+Peng-Lin Chen
 
 Guideline for how to branch and develop our parts
 
